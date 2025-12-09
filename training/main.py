@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from src.model_training import train_model
-from src.register_model import register_best_model
+
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_DIR = os.path.join(PROJECT_ROOT, "data/processed")
@@ -38,6 +38,7 @@ for name, model in models.items():
         best_accuracy = result["accuracy"]
         best_model_name = name
         best_run_id = result["run_id"]
+
 print("\n====================")
 print(f"Best Model: {best_model_name}")
 print(f"Best Accuracy: {best_accuracy:.3f}")
@@ -45,7 +46,20 @@ print(f"Run ID: {best_run_id}")
 print("====================")
 
 # Register the best model
-register_best_model(
-    run_id=best_run_id,
-    model_name=best_model_name
+
+from src.register_model import register_best_model
+registered_version = register_best_model(
+    run_id = best_run_id,
+    model_name = best_model_name
 )
+
+print("✅ Training and registration completed.")
+
+# Move the best model to Staging
+
+from src.stage_model import stage_model
+stage_model(
+    model_name = "Student_Grade_Model",
+    version = registered_version
+)
+

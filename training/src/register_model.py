@@ -15,3 +15,4 @@ def register_best_model(run_id, model_name):
     print(f"✅ Model registered successfully")
     print(f"Model name: Student_Grade_Model")
     print(f"Version: {result.version}")
+    return result.version
