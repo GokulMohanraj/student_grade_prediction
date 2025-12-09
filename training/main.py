@@ -4,10 +4,12 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from src.model_training import train_model
+# from src.data_processing import create_processed_data, process_data
 
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_DIR = os.path.join(PROJECT_ROOT, "data/processed")
+
 
 # Load data
 X_train = pd.read_csv(os.path.join(DATA_DIR, "X_train.csv"))
