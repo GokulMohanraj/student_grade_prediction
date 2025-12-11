@@ -18,8 +18,8 @@ y_train = pd.read_csv(os.path.join(DATA_DIR, "y_train.csv"))["grade"]
 y_test = pd.read_csv(os.path.join(DATA_DIR, "y_test.csv"))["grade"]
 
 models = {
-    "RandomForest": RandomForestClassifier(n_estimators=10, random_state=42),
-    "LogisticRegression": LogisticRegression(max_iter=300),
+    "RandomForest": RandomForestClassifier(n_estimators=100, random_state=42),
+    "LogisticRegression": LogisticRegression(max_iter=500),
 }
 
 best_accuracy = 0
@@ -64,4 +64,3 @@ stage_model(
     model_name = "Student_Grade_Model",
     version = registered_version
 )
-

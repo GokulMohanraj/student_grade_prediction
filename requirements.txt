@@ -1,6 +1,20 @@
+# Data manipulation
 pandas
+numpy
+
+# Machine Learning
 scikit-learn
-mlflow
 joblib
+
+# Experiment tracking
+mlflow
+
+# Data version control
+dvc
+
+# Web framework
 fastapi
 uvicorn
+
+# Frontend
+streamlit
