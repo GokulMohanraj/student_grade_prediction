@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from deployment.src.model_loader import load_model, predict
+from deployment.src.model_loader import load_model, predict as model_predict
 from deployment.src.schemas import StudentInput, PredictionOutput
 
 app = FastAPI(
@@ -16,15 +16,15 @@ def health_check():
     return {"status": "API is running"}
 
 
-@app.post("/predict")
-def predict(data: StudentInput):
-    prediction = model.predict([[ 
-        data.midterm_score,
-        data.attendance,
-        data.study_hours,
-        data.no_of_projects
-    ]])
-
-    grade_map = {0: "F", 1: "D", 2: "C", 3: "B", 4: "A"}
-
-    return {"grade": grade_map[int(prediction[0])]}
+@app.post("/predict", response_model=PredictionOutput)
+def predict_grade(data: StudentInput):
+    prediction = model_predict(
+        model,
+        {
+            "midterm_score": data.midterm_score,
+            "attendance": data.attendance,
+            "study_hours": data.study_hours,
+            "no_of_projects": data.no_of_projects
+        }
+    )
+    return {"predicted_grade": GRADE_MAP[int(prediction)]}

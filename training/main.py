@@ -3,6 +3,7 @@ import os
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from xgboost import XGBClassifier
 from src.model_training import train_model
 # from src.data_processing import create_processed_data, process_data
 
@@ -20,6 +21,8 @@ y_test = pd.read_csv(os.path.join(DATA_DIR, "y_test.csv"))["grade"]
 models = {
     "RandomForest": RandomForestClassifier(n_estimators=100, random_state=42),
     "LogisticRegression": LogisticRegression(max_iter=500),
+    "XGBoost": XGBClassifier(n_estimators=100, max_depth=4, random_state=42)
+
 }
 
 best_accuracy = 0
