@@ -4,6 +4,7 @@ numpy
 
 # Machine Learning
 scikit-learn
+xgboost
 joblib
 
 # Experiment tracking

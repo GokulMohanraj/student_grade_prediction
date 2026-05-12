@@ -1,17 +1,22 @@
 import mlflow
-import os
 import pandas as pd
+from common.config import MODEL_NAME, MLFLOW_TRACKING_URI
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
-MLRUNS_PATH = os.path.join(PROJECT_ROOT, "mlruns")
+print("Tracking URI:", mlflow.get_tracking_uri())
 
-mlflow.set_tracking_uri("file:///" + MLRUNS_PATH.replace("\\", "/"))
+# --------------------------------------------------
+# Configure MLflow Tracking URI
+# --------------------------------------------------
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
-MODEL_NAME = "Student_Grade_Model"
-MODEL_STAGE = "Staging"
+# --------------------------------------------------
+# Always load PRODUCTION alias
+# --------------------------------------------------
+MODEL_ALIAS = "production"
+
 
 def load_model():
-    model_uri = f"models:/{MODEL_NAME}/{MODEL_STAGE}"
+    model_uri = f"models:/{MODEL_NAME}@{MODEL_ALIAS}"
     model = mlflow.pyfunc.load_model(model_uri)
     return model
 

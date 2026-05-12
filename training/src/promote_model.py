@@ -2,7 +2,7 @@
 
 import mlflow
 from mlflow.tracking import MlflowClient
-from src.config import MODEL_NAME, MLFLOW_TRACKING_URI
+from common.config import MODEL_NAME, MLFLOW_TRACKING_URI
 
 
 def get_accuracy(client, version):

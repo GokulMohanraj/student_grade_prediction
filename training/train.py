@@ -8,7 +8,7 @@ from src.data_processing import process_data
 from src.model_training import train_model
 from src.register_model import register_best_model
 from src.promote_model import rotate_model_lifecycle
-from src.config import MLFLOW_TRACKING_URI 
+from common.config import MLFLOW_TRACKING_URI 
 
 
 # --------------------------------------------------
