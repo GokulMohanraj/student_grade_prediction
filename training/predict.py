@@ -2,6 +2,7 @@
 import mlflow
 import pandas as pd
 import os
+from src.config import MLFLOW_TRACKING_URI, MODEL_NAME
 
 # --------------------------------------------------
 # Set MLflow tracking
